@@ -1,0 +1,1 @@
+# maika-sh-js-model
