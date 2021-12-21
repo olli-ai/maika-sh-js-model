@@ -3,7 +3,7 @@ import restoreSequelizeAttributesOnClass from "../lib/db";
 
 class PartnerUser extends Model {
   public id!: number;
-  public status!: string | null;
+  public status!: number | null;
   public agent_user_id!: string | null;
   public code!: string | null;
   public platform_url!: string | null;
