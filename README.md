@@ -1,9 +1,10 @@
 # maika-sh-js-model
+
 To add submodule model
 
 delete src/models
 
-git add src/models*
+git add src/models\*
 
 git commit -m "- Delete local model"
 

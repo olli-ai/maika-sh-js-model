@@ -26,6 +26,9 @@ export = (sequelize: Sequelize) => {
         allowNull: false,
         unique: true,
       },
+      name_vn: {
+        type: DataTypes.STRING(60),
+      },
       description: {
         type: DataTypes.STRING(150),
       },
