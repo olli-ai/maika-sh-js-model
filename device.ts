@@ -6,7 +6,7 @@ class Device extends Model {
   public name!: string;
   public device_id!: string;
   public gcp_settings!: string | null;
-  public aws_settings!: string | null;
+  public extra!: string | null;
   public room_id!: number;
   public device_type_id!: number;
   public partner_user_id!: number;
@@ -40,8 +40,8 @@ export = (sequelize: Sequelize) => {
       gcp_settings: {
         type: DataTypes.STRING(8000),
       },
-      aws_settings: {
-        type: DataTypes.STRING(8000),
+      extra: {
+        type: DataTypes.STRING(1000),
       },
       room_id: {
         type: DataTypes.INTEGER,
