@@ -4,6 +4,7 @@ import restoreSequelizeAttributesOnClass from "../lib/db";
 class DeviceType extends Model {
   public id!: number;
   public name!: string;
+  public name_vn!: string;
   public description!: string | null;
   public namespace!: string | null;
 

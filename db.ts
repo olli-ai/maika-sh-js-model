@@ -15,19 +15,47 @@ import SceneResponseCommandModel from "./device_response_command";
 import MaikaUserModel from "./maika_user";
 import DeviceIconModel from "./device_icon";
 
-export const sequelize = new Sequelize(
-  process.env.DB_NAME!,
-  process.env.DB_USER!,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: "mysql",
-    logging: false,
-    define: {
-      timestamps: false,
-    },
-  },
-);
+export const sequelize =
+  process.env.DB_REPLICATION !== undefined &&
+  String(process.env.DB_REPLICATION).toLowerCase() == "true"
+    ? new Sequelize(process.env.DB_NAME!, process.env.DB_USER!, process.env.DB_PASSWORD, {
+        dialect: "mysql",
+        logging: false,
+        define: {
+          timestamps: false,
+        },
+        replication: {
+          read: [
+            {
+              host: process.env.DB_HOST_SLAVE_1,
+              port: process.env.DB_PORT,
+              username: process.env.DB_USER!,
+              password: process.env.DB_PASSWORD,
+              database: process.env.DB_NAME!,
+            },
+          ],
+          write: {
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            username: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME!,
+          },
+        },
+        pool: {
+          // If you want to override the options used for the read/write pool you can do so here
+          max: 20,
+          idle: 30000,
+        },
+      })
+    : new Sequelize(process.env.DB_NAME!, process.env.DB_USER!, process.env.DB_PASSWORD, {
+        host: process.env.DB_HOST,
+        dialect: "mysql",
+        logging: false,
+        define: {
+          timestamps: false,
+        },
+      });
 
 sequelize.sync({
   force: false, // To create table if exists , so make it false
