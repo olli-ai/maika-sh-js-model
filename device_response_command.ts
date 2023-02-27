@@ -21,7 +21,7 @@ export = (sequelize: Sequelize) => {
         primaryKey: true,
       },
       command: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(2000),
         allowNull: false,
       },
       device_id: {
