@@ -8,6 +8,7 @@ class Device extends Model {
   public gcp_settings!: string | null;
   public extra!: string | null;
   public room_id!: number;
+  public structure_id!: number;
   public device_type_id!: number;
   public partner_user_id!: number;
   public visible_level!: number | null;
@@ -47,6 +48,13 @@ export = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         references: {
           model: "room",
+          key: "id",
+        },
+      },
+      structure_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "structure",
           key: "id",
         },
       },

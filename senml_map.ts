@@ -5,7 +5,8 @@ class SenmlMap extends Model {
   public id!: number;
   public name!: string;
   public description!: string | null;
-  public voice_command!: string | null;
+  public voice_command!: any | null;
+  public old_voice_command!: string | null;
   public gcp_command_idid!: number | null;
   public aws_command_id!: number | null;
 
@@ -32,6 +33,9 @@ export = (sequelize: Sequelize) => {
         type: DataTypes.STRING(500),
       },
       voice_command: {
+        type: DataTypes.JSON,
+      },
+      old_voice_command: {
         type: DataTypes.STRING(500),
       },
       gcp_command_id: {
