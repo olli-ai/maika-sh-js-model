@@ -121,6 +121,13 @@ Room.hasMany(Device, {
 });
 Device.belongsTo(Room, { as: "room", foreignKey: "room_id" });
 
+/* Structure -> Device */
+Structure.hasMany(Device, {
+  as: "devices",
+  foreignKey: "structure_id",
+});
+Device.belongsTo(Structure, { as: "structure", foreignKey: "structure_id" });
+
 /* PartnerUser -> Device */
 PartnerUser.hasMany(Device, {
   as: "devices",
